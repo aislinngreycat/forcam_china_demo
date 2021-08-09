@@ -1,1 +1,1675 @@
-[]
+[
+    {
+        "id": "1698e713.723af9",
+        "type": "tab",
+        "label": "IO-Box",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "67063eb4.e123e",
+        "type": "ui_group",
+        "name": "Machine State & Context",
+        "tab": "f504077c.552108",
+        "order": 2,
+        "disp": true,
+        "width": "8",
+        "collapse": false
+    },
+    {
+        "id": "a8e6d.563b41938",
+        "type": "ui_group",
+        "name": "Machine Signal Visualisation",
+        "tab": "f504077c.552108",
+        "order": 3,
+        "disp": true,
+        "width": "8",
+        "collapse": false
+    },
+    {
+        "id": "2156d79d.ea5c48",
+        "type": "ui_group",
+        "name": "Machine Signal History",
+        "tab": "f504077c.552108",
+        "order": 4,
+        "disp": true,
+        "width": "8",
+        "collapse": true
+    },
+    {
+        "id": "e92c7723.51846",
+        "type": "mqtt-broker",
+        "name": "MQTT Broker from ENV file",
+        "broker": " ${MQTT_HOST}",
+        "port": "${MQTT_PORT}",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "cf87373e.196598",
+        "type": "ui_group",
+        "name": "Log",
+        "tab": "f504077c.552108",
+        "order": 5,
+        "disp": true,
+        "width": "8",
+        "collapse": true
+    },
+    {
+        "id": "b5ac4198.43414",
+        "type": "postgresDB",
+        "name": "Uwe@localhost:5422/postgres",
+        "host": "localhost",
+        "hostFieldType": "str",
+        "port": "5422",
+        "portFieldType": "num",
+        "database": "ForcamSignals",
+        "databaseFieldType": "str",
+        "ssl": "false",
+        "sslFieldType": "bool",
+        "max": "10",
+        "maxFieldType": "num",
+        "min": "1",
+        "minFieldType": "num",
+        "idle": "1000",
+        "idleFieldType": "num",
+        "user": "Uwe",
+        "userFieldType": "str",
+        "password": "forceedge00!",
+        "passwordFieldType": "str"
+    },
+    {
+        "id": "5a2275c946e8a97e",
+        "type": "ui_group",
+        "name": "Dashboards",
+        "tab": "f504077c.552108",
+        "order": 1,
+        "disp": false,
+        "width": "8",
+        "collapse": false
+    },
+    {
+        "id": "f504077c.552108",
+        "type": "ui_tab",
+        "name": "IO-Box",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "ea0fc0cd.84526",
+        "type": "debug",
+        "z": "1698e713.723af9",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1110,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "b011b3f2.97409",
+        "type": "ui_text",
+        "z": "1698e713.723af9",
+        "group": "67063eb4.e123e",
+        "order": 1,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "Current Machine State:",
+        "format": "{{msg.payload.machineName}} in {{msg.payload.status}}",
+        "layout": "col-center",
+        "x": 1108,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "f32cb752.72a5d8",
+        "type": "debug",
+        "z": "1698e713.723af9",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 970,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "cca7331f.6785",
+        "type": "ui_gauge",
+        "z": "1698e713.723af9",
+        "name": "",
+        "group": "a8e6d.563b41938",
+        "order": 2,
+        "width": 8,
+        "height": 5,
+        "gtype": "gage",
+        "title": "Manufactured versus Target",
+        "label": "Manufactured Products",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "150",
+        "colors": [
+            "#b30012",
+            "#e6e600",
+            "#67cb3a"
+        ],
+        "seg1": "100",
+        "seg2": "135",
+        "x": 1220,
+        "y": 600,
+        "wires": [],
+        "inputLabels": [
+            "none"
+        ]
+    },
+    {
+        "id": "c8bac66.f3e4038",
+        "type": "ui_chart",
+        "z": "1698e713.723af9",
+        "name": "",
+        "group": "2156d79d.ea5c48",
+        "order": 1,
+        "width": 8,
+        "height": 5,
+        "label": "Manufactured Counter History",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "no data received",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "10",
+        "removeOlderPoints": "180",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 1310,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dd26f03a.36f7b",
+        "type": "ui_text_input",
+        "z": "1698e713.723af9",
+        "name": "Production Order Context",
+        "label": "Set Production Order Context (with next counter change)",
+        "tooltip": "",
+        "group": "67063eb4.e123e",
+        "order": 4,
+        "width": 8,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "businessparameter",
+        "topicType": "str",
+        "x": 130,
+        "y": 180,
+        "wires": [
+            [
+                "48762193.05b6e"
+            ]
+        ]
+    },
+    {
+        "id": "71f9bd41.371a34",
+        "type": "mqtt in",
+        "z": "1698e713.723af9",
+        "name": "Get /stateLinux",
+        "topic": "/stateLinux",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "e92c7723.51846",
+        "nl": false,
+        "rap": false,
+        "x": 100,
+        "y": 280,
+        "wires": [
+            [
+                "8bf3ef21.528ec"
+            ]
+        ]
+    },
+    {
+        "id": "8027e85a.71beb8",
+        "type": "mqtt in",
+        "z": "1698e713.723af9",
+        "name": "Get /signalValueLinux",
+        "topic": "/signalValueLinux",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "e92c7723.51846",
+        "nl": false,
+        "rap": false,
+        "x": 120,
+        "y": 460,
+        "wires": [
+            [
+                "1dcc6b8c.8d08f4"
+            ]
+        ]
+    },
+    {
+        "id": "1769fe2.4fedc02",
+        "type": "debug",
+        "z": "1698e713.723af9",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "48762193.05b6e",
+        "type": "function",
+        "z": "1698e713.723af9",
+        "name": "",
+        "func": "var Bearer = global.get(\"LBearerNodeheader\");\nmsg.payload = \"{\\\"name\\\": \\\"ProductionOrder\\\", \\\"value\\\": \\\"\" + msg.payload + \"\\\", \\\"machineUuid\\\": \\\"da0e61be-363d-4d8d-8c93-42959101863b\\\"}\"\nmsg.headers={ \n    'accept': '*/*',\n    'Authorization': Bearer,\n    'Content-Type': 'application/json' \n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 180,
+        "wires": [
+            [
+                "53ea8236.80471c"
+            ]
+        ]
+    },
+    {
+        "id": "53ea8236.80471c",
+        "type": "json",
+        "z": "1698e713.723af9",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 470,
+        "y": 180,
+        "wires": [
+            [
+                "1769fe2.4fedc02",
+                "803a05f2.112f18"
+            ]
+        ]
+    },
+    {
+        "id": "8bf3ef21.528ec",
+        "type": "json",
+        "z": "1698e713.723af9",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 270,
+        "y": 280,
+        "wires": [
+            [
+                "b697ec10.0f9db"
+            ]
+        ]
+    },
+    {
+        "id": "1dcc6b8c.8d08f4",
+        "type": "json",
+        "z": "1698e713.723af9",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 310,
+        "y": 460,
+        "wires": [
+            [
+                "29714ba8.cf0684"
+            ]
+        ]
+    },
+    {
+        "id": "7dfd05d8.0797bc",
+        "type": "function",
+        "z": "1698e713.723af9",
+        "name": "",
+        "func": "msg.payload = msg.payload.value;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 970,
+        "y": 540,
+        "wires": [
+            [
+                "c8bac66.f3e4038",
+                "cca7331f.6785"
+            ]
+        ]
+    },
+    {
+        "id": "50f88cb.789d974",
+        "type": "ui_text",
+        "z": "1698e713.723af9",
+        "group": "67063eb4.e123e",
+        "order": 3,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "Current Machine Reference:",
+        "format": "{{msg.payload.reference}}",
+        "layout": "col-center",
+        "x": 1120,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "803a05f2.112f18",
+        "type": "http request",
+        "z": "1698e713.723af9",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://139.196.43.227:60080/machines/da0e61be-363d-4d8d-8c93-42959101863b/mdc/businessParameter/",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 650,
+        "y": 220,
+        "wires": [
+            [
+                "a98d0cc.7d3c8f",
+                "b201c62d.739d58"
+            ]
+        ]
+    },
+    {
+        "id": "38e6cd7c.6d1f22",
+        "type": "debug",
+        "z": "1698e713.723af9",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "65b901bb.6571a",
+        "type": "ui_template",
+        "z": "1698e713.723af9",
+        "group": "a8e6d.563b41938",
+        "name": "",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n    body {\n        background-image: url(\"/forcam.png\");\n        background-size: cover;\n    }\n</style>\n\n<style>\n    \n    ui_gauge {\n        background-image: url(\"/forcam.png\");\n        background-size: cover;\n    }\n</style>\n\n<style>\n    .md-toolbar-tools{\n        background-image: url(\"/ForceEdge.png\");\n        background-repeat: no-repeat;margin-left: 50px;\n        margin-right: 50px;\n        background-size: 125px 39px;\n        background-position: 50px;\n        \n    }\n    .md-toolbar-tools h1{\n        text-align: right;\n        width: 380px;\n    }\n</style>",
+        "storeOutMessages": false,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 300,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5656c816.bbfdf8",
+        "type": "ui_text_input",
+        "z": "1698e713.723af9",
+        "name": "Machine ID Context",
+        "label": "Set Machine ID Context (with next production state)",
+        "tooltip": "",
+        "group": "67063eb4.e123e",
+        "order": 2,
+        "width": 8,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "machineid",
+        "topicType": "str",
+        "x": 170,
+        "y": 1400,
+        "wires": [
+            [
+                "df760027.52e7c"
+            ]
+        ]
+    },
+    {
+        "id": "d9f625d4.59f508",
+        "type": "debug",
+        "z": "1698e713.723af9",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "df760027.52e7c",
+        "type": "function",
+        "z": "1698e713.723af9",
+        "name": "",
+        "func": "\nvar Bearer = global.get(\"LBearerNodeheader\");\nmsg.payload = \"{\\\"name\\\": \\\"EquipmentId\\\", \\\"value\\\": \\\"\" + msg.payload + \"\\\", \\\"machineUuid\\\": \\\"da0e61be-363d-4d8d-8c93-42959101863b\\\"}\"\nmsg.headers={\n    'accept': '*/*',\n    'Authorization': Bearer ,\n    'Content-Type': 'application/json' \n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 1400,
+        "wires": [
+            [
+                "7dfe67af.307398"
+            ]
+        ]
+    },
+    {
+        "id": "7dfe67af.307398",
+        "type": "json",
+        "z": "1698e713.723af9",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 490,
+        "y": 1400,
+        "wires": [
+            [
+                "d9f625d4.59f508",
+                "1e27197a.403837"
+            ]
+        ]
+    },
+    {
+        "id": "1e27197a.403837",
+        "type": "http request",
+        "z": "1698e713.723af9",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://139.196.43.227:60080/machines/da0e61be-363d-4d8d-8c93-42959101863b/mdc/businessParameter/",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 670,
+        "y": 1440,
+        "wires": [
+            [
+                "bee88fd4.782c6",
+                "ab778380.7293f"
+            ]
+        ]
+    },
+    {
+        "id": "a7593589.599c28",
+        "type": "ui_text",
+        "z": "1698e713.723af9",
+        "group": "67063eb4.e123e",
+        "order": 5,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "Current Production Order and Routing",
+        "format": "{{msg.payload.reference}}",
+        "layout": "col-center",
+        "x": 1230,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "30e72e19.ac5272",
+        "type": "debug",
+        "z": "1698e713.723af9",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 930,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "b697ec10.0f9db",
+        "type": "function",
+        "z": "1698e713.723af9",
+        "name": "filter machineName",
+        "func": "//return [ msg, null];\n\nvar payload = msg.payload;\nif (payload.machineName == \"IOT8801BM\") {\n    return [ msg, null ];} else {\n\n    return [ null, msg ];\n}\n//",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 570,
+        "y": 280,
+        "wires": [
+            [
+                "ea0fc0cd.84526",
+                "b011b3f2.97409",
+                "50f88cb.789d974"
+            ],
+            [
+                "38e6cd7c.6d1f22"
+            ]
+        ]
+    },
+    {
+        "id": "60441840.a65a78",
+        "type": "function",
+        "z": "1698e713.723af9",
+        "name": "Temperature?",
+        "func": "\n\nvar payload = msg.payload;\n// split by signalname ==> requires more outputs \nif (payload.signalName == \"Temperature\") {\n    return [  msg, null ]; } \n    else \n    { return [  null, msg ];}\n        ",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 740,
+        "y": 620,
+        "wires": [
+            [
+                "72fb24c7.2aa0ac",
+                "f32cb752.72a5d8"
+            ],
+            [
+                "a6032813.2191b8"
+            ]
+        ]
+    },
+    {
+        "id": "114a3913.7cb017",
+        "type": "ui_gauge",
+        "z": "1698e713.723af9",
+        "name": "",
+        "group": "a8e6d.563b41938",
+        "order": 3,
+        "width": 8,
+        "height": 5,
+        "gtype": "gage",
+        "title": "Temperature Operation Range",
+        "label": "Celsius",
+        "format": "{{value | number:1}}",
+        "min": "0",
+        "max": "50",
+        "colors": [
+            "#b30012",
+            "#e6e600",
+            "#67cb3a"
+        ],
+        "seg1": "10",
+        "seg2": "25",
+        "x": 1230,
+        "y": 700,
+        "wires": [],
+        "inputLabels": [
+            "none"
+        ]
+    },
+    {
+        "id": "ffd8e4.e282872",
+        "type": "ui_chart",
+        "z": "1698e713.723af9",
+        "name": "",
+        "group": "2156d79d.ea5c48",
+        "order": 2,
+        "width": 8,
+        "height": 5,
+        "label": "Temperature History",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "no data received",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "10",
+        "removeOlderPoints": "180",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 1280,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "72fb24c7.2aa0ac",
+        "type": "function",
+        "z": "1698e713.723af9",
+        "name": "",
+        "func": "msg.payload = msg.payload.value;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 960,
+        "y": 640,
+        "wires": [
+            [
+                "ffd8e4.e282872",
+                "114a3913.7cb017"
+            ]
+        ]
+    },
+    {
+        "id": "5d2e132f.f2b40c",
+        "type": "ui_gauge",
+        "z": "1698e713.723af9",
+        "name": "",
+        "group": "a8e6d.563b41938",
+        "order": 4,
+        "width": 8,
+        "height": 5,
+        "gtype": "gage",
+        "title": "Vibration Operation Range",
+        "label": "um",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "22000",
+        "colors": [
+            "#b30012",
+            "#e6e600",
+            "#67cb3a"
+        ],
+        "seg1": "5000",
+        "seg2": "10000",
+        "x": 1220,
+        "y": 820,
+        "wires": [],
+        "inputLabels": [
+            "none"
+        ]
+    },
+    {
+        "id": "5b97577e.3b9398",
+        "type": "ui_chart",
+        "z": "1698e713.723af9",
+        "name": "",
+        "group": "2156d79d.ea5c48",
+        "order": 3,
+        "width": 8,
+        "height": 5,
+        "label": "Vibration History",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "no data received",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "10",
+        "removeOlderPoints": "180",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 1220,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "da9b8fb8.6af5b",
+        "type": "function",
+        "z": "1698e713.723af9",
+        "name": "",
+        "func": "msg.payload = msg.payload.value;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 960,
+        "y": 760,
+        "wires": [
+            [
+                "5b97577e.3b9398",
+                "5d2e132f.f2b40c"
+            ]
+        ]
+    },
+    {
+        "id": "29714ba8.cf0684",
+        "type": "function",
+        "z": "1698e713.723af9",
+        "name": "filter machineName",
+        "func": "//return [ msg, null];\n\nvar payload = msg.payload;\nif (payload.machineName == \"IOT8801BM\") {\n    return [ msg, null ];} else {\n\n    return [ null, msg ];\n}\n//",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 490,
+        "y": 460,
+        "wires": [
+            [
+                "3b83eefa.103f42"
+            ],
+            [
+                "eab328e0.144158"
+            ]
+        ]
+    },
+    {
+        "id": "eab328e0.144158",
+        "type": "debug",
+        "z": "1698e713.723af9",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "3b83eefa.103f42",
+        "type": "function",
+        "z": "1698e713.723af9",
+        "name": "Counter?",
+        "func": "\n\nvar payload = msg.payload;\n// split by signalname ==> requires more outputs \nif (payload.signalName == \"Counter\") {\n    return [  msg, null ]; } \n    else \n    { return [  null, msg ];}\n        ",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 700,
+        "y": 460,
+        "wires": [
+            [
+                "f32cb752.72a5d8",
+                "7dfd05d8.0797bc",
+                "a7593589.599c28"
+            ],
+            [
+                "60441840.a65a78"
+            ]
+        ]
+    },
+    {
+        "id": "a6032813.2191b8",
+        "type": "function",
+        "z": "1698e713.723af9",
+        "name": "Distance?",
+        "func": "\n\nvar payload = msg.payload;\n// split by signalname ==> requires more outputs \nif (payload.signalName == \"Distance\") {\n    return [  msg, null ]; } \n    else \n    { return [  null, msg ];}\n        ",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 720,
+        "y": 760,
+        "wires": [
+            [
+                "da9b8fb8.6af5b",
+                "f32cb752.72a5d8"
+            ],
+            [
+                "30e72e19.ac5272"
+            ]
+        ]
+    },
+    {
+        "id": "f1280ec1.70fe2",
+        "type": "ui_button",
+        "z": "1698e713.723af9",
+        "d": true,
+        "name": "",
+        "group": "67063eb4.e123e",
+        "order": 6,
+        "width": 8,
+        "height": 1,
+        "passthru": false,
+        "label": "machine info edge",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "get",
+        "topicType": "msg",
+        "x": 190,
+        "y": 1525,
+        "wires": [
+            [
+                "7a1f734d.1b221c"
+            ]
+        ]
+    },
+    {
+        "id": "7a1f734d.1b221c",
+        "type": "http request",
+        "z": "1698e713.723af9",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://101.132.109.40:60080/machines/6fcc2a6c-a35b-4220-bf05-32b2c1bc0099/mdc/controller/script",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 530,
+        "y": 1525,
+        "wires": [
+            [
+                "9cc9d1ee.813b9"
+            ]
+        ]
+    },
+    {
+        "id": "bf84790c.5838f8",
+        "type": "ui_text",
+        "z": "1698e713.723af9",
+        "d": true,
+        "group": "67063eb4.e123e",
+        "order": 7,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "Composition Script",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 930,
+        "y": 1625,
+        "wires": []
+    },
+    {
+        "id": "69d99b24.6fc684",
+        "type": "debug",
+        "z": "1698e713.723af9",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 1525,
+        "wires": []
+    },
+    {
+        "id": "9cc9d1ee.813b9",
+        "type": "json",
+        "z": "1698e713.723af9",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 550,
+        "y": 1625,
+        "wires": [
+            [
+                "e0a9bba.8235a48"
+            ]
+        ]
+    },
+    {
+        "id": "e0a9bba.8235a48",
+        "type": "function",
+        "z": "1698e713.723af9",
+        "name": "beautify",
+        "func": "var A = msg.payload\n//var n = A.replace(/\\n/g, \"  \")\nvar n = A.replace(new RegExp(\"\\\\\\\\n\", \"g\"), \"--\");\nvar m = n.replace(new RegExp(\"\\\\\\\\\", \"g\"), \"--\");\nvar o = m.replace(new RegExp(\"\\\\\\,\", \"g\"), \"----\")\nmsg.payload = o\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 720,
+        "y": 1625,
+        "wires": [
+            [
+                "bf84790c.5838f8",
+                "69d99b24.6fc684"
+            ]
+        ]
+    },
+    {
+        "id": "a98d0cc.7d3c8f",
+        "type": "debug",
+        "z": "1698e713.723af9",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 870,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "bee88fd4.782c6",
+        "type": "debug",
+        "z": "1698e713.723af9",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 870,
+        "y": 1445,
+        "wires": []
+    },
+    {
+        "id": "ab778380.7293f",
+        "type": "json",
+        "z": "1698e713.723af9",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 930,
+        "y": 1405,
+        "wires": [
+            [
+                "94617a84.590de8"
+            ]
+        ]
+    },
+    {
+        "id": "b201c62d.739d58",
+        "type": "json",
+        "z": "1698e713.723af9",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 970,
+        "y": 80,
+        "wires": [
+            [
+                "8be0cae5.64a738"
+            ]
+        ]
+    },
+    {
+        "id": "8be0cae5.64a738",
+        "type": "ui_toast",
+        "z": "1698e713.723af9",
+        "position": "top right",
+        "displayTime": "10",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "Cancel",
+        "raw": false,
+        "topic": "msg.payload",
+        "name": "business context",
+        "x": 1130,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "94617a84.590de8",
+        "type": "ui_toast",
+        "z": "1698e713.723af9",
+        "position": "bottom right",
+        "displayTime": "10",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "topic": "msg.payload",
+        "name": "equipment context",
+        "x": 1150,
+        "y": 1405,
+        "wires": []
+    },
+    {
+        "id": "b9c6dbdd.c51028",
+        "type": "ui_button",
+        "z": "1698e713.723af9",
+        "name": "",
+        "group": "cf87373e.196598",
+        "order": 1,
+        "width": 8,
+        "height": 1,
+        "passthru": false,
+        "label": "state changes (previous 15 minutes)",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "get",
+        "topicType": "msg",
+        "x": 370,
+        "y": 1825,
+        "wires": [
+            [
+                "95eacc0.bd02d38"
+            ]
+        ]
+    },
+    {
+        "id": "95eacc0.bd02d38",
+        "type": "postgrestor",
+        "z": "1698e713.723af9",
+        "name": "recent 15 minutes for SinoPress",
+        "query": "SELECT state.created_at, state.machine_state, state.reference  FROM state WHERE state.machine_name = 'IOT8801BM' AND state.created_at >= (NOW() - INTERVAL '15 MINUTES')\nORDER BY state.created_at DESC;",
+        "postgresDB": "b5ac4198.43414",
+        "output": true,
+        "outputs": 1,
+        "x": 670,
+        "y": 1825,
+        "wires": [
+            [
+                "d0476ac1.ee4468",
+                "55018318.db522c"
+            ]
+        ]
+    },
+    {
+        "id": "d0476ac1.ee4468",
+        "type": "debug",
+        "z": "1698e713.723af9",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 850,
+        "y": 1905,
+        "wires": []
+    },
+    {
+        "id": "55018318.db522c",
+        "type": "function",
+        "z": "1698e713.723af9",
+        "name": "",
+        "func": "msg.payload = msg.payload.rows\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 860,
+        "y": 1765,
+        "wires": [
+            [
+                "e98cecd9.ab027",
+                "301d2d19.f01c12"
+            ]
+        ]
+    },
+    {
+        "id": "e98cecd9.ab027",
+        "type": "debug",
+        "z": "1698e713.723af9",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1070,
+        "y": 1765,
+        "wires": []
+    },
+    {
+        "id": "301d2d19.f01c12",
+        "type": "ui_table",
+        "z": "1698e713.723af9",
+        "group": "cf87373e.196598",
+        "name": "",
+        "order": 2,
+        "width": 8,
+        "height": 5,
+        "columns": [],
+        "outputs": 0,
+        "cts": false,
+        "x": 1100,
+        "y": 1865,
+        "wires": []
+    },
+    {
+        "id": "8fa692ac.ded8c",
+        "type": "postgrestor",
+        "z": "1698e713.723af9",
+        "name": "recent 15 minutes for SinoPress",
+        "query": "SELECT signalvalue.created_at, signalvalue.signal_name, signalvalue.value, signalvalue.reference  FROM signalvalue WHERE signalvalue.machine_name = 'IOT8801BM' AND signalvalue.created_at >= (NOW() - INTERVAL '15 MINUTES')\nORDER BY signalvalue.created_at DESC;",
+        "postgresDB": "b5ac4198.43414",
+        "output": true,
+        "outputs": 1,
+        "x": 690,
+        "y": 1965,
+        "wires": [
+            [
+                "67f8dac.946a824",
+                "7c96d24e.7e4b4c"
+            ]
+        ]
+    },
+    {
+        "id": "5c1403c8.03b30c",
+        "type": "ui_button",
+        "z": "1698e713.723af9",
+        "name": "",
+        "group": "cf87373e.196598",
+        "order": 3,
+        "width": 8,
+        "height": 1,
+        "passthru": false,
+        "label": "signals  (previous 15 minutes)",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "get",
+        "topicType": "msg",
+        "x": 320,
+        "y": 1965,
+        "wires": [
+            [
+                "8fa692ac.ded8c"
+            ]
+        ]
+    },
+    {
+        "id": "67f8dac.946a824",
+        "type": "debug",
+        "z": "1698e713.723af9",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 2065,
+        "wires": []
+    },
+    {
+        "id": "7c96d24e.7e4b4c",
+        "type": "function",
+        "z": "1698e713.723af9",
+        "name": "",
+        "func": "msg.payload = msg.payload.rows\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 940,
+        "y": 1965,
+        "wires": [
+            [
+                "ab821fa3.2b783",
+                "e428fa66.948f58"
+            ]
+        ]
+    },
+    {
+        "id": "ab821fa3.2b783",
+        "type": "debug",
+        "z": "1698e713.723af9",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1130,
+        "y": 1965,
+        "wires": []
+    },
+    {
+        "id": "e428fa66.948f58",
+        "type": "ui_table",
+        "z": "1698e713.723af9",
+        "group": "cf87373e.196598",
+        "name": "",
+        "order": 4,
+        "width": 8,
+        "height": 5,
+        "columns": [],
+        "outputs": 0,
+        "cts": false,
+        "x": 1130,
+        "y": 2065,
+        "wires": []
+    },
+    {
+        "id": "39ab5c4d.c5c664",
+        "type": "mqtt in",
+        "z": "1698e713.723af9",
+        "name": "Get /quantity",
+        "topic": "/quantity",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "e92c7723.51846",
+        "x": 150,
+        "y": 980,
+        "wires": [
+            [
+                "470bc71a.de2208"
+            ]
+        ]
+    },
+    {
+        "id": "f3b2688b.110b78",
+        "type": "function",
+        "z": "1698e713.723af9",
+        "name": "filter machineName",
+        "func": "//return [ msg, null];\n\nvar payload = msg.payload;\nif (payload.machineName == \"IOT8801BM\") {\n    return [ msg, null ];} else {\n\n    return [ null, msg ];\n}\n//",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 550,
+        "y": 980,
+        "wires": [
+            [
+                "ca9aea4a.232548",
+                "4a27cf53.856ff"
+            ]
+        ]
+    },
+    {
+        "id": "470bc71a.de2208",
+        "type": "json",
+        "z": "1698e713.723af9",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 370,
+        "y": 980,
+        "wires": [
+            [
+                "f3b2688b.110b78"
+            ]
+        ]
+    },
+    {
+        "id": "4a27cf53.856ff",
+        "type": "function",
+        "z": "1698e713.723af9",
+        "name": "",
+        "func": "msg.payload = msg.payload.amount;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1030,
+        "y": 1060,
+        "wires": [
+            [
+                "862fc996.53e758",
+                "86580e0e.447ee",
+                "46fe2a7c.7b4de4"
+            ]
+        ]
+    },
+    {
+        "id": "ca9aea4a.232548",
+        "type": "debug",
+        "z": "1698e713.723af9",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1030,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "86580e0e.447ee",
+        "type": "ui_gauge",
+        "z": "1698e713.723af9",
+        "name": "",
+        "group": "a8e6d.563b41938",
+        "order": 5,
+        "width": 8,
+        "height": 5,
+        "gtype": "gage",
+        "title": "Manufactured Incremental",
+        "label": "Manufactured Products",
+        "format": "{{amount}}",
+        "min": "0",
+        "max": "150",
+        "colors": [
+            "#b30012",
+            "#e6e600",
+            "#67cb3a"
+        ],
+        "seg1": "100",
+        "seg2": "135",
+        "x": 1330,
+        "y": 1080,
+        "wires": [],
+        "inputLabels": [
+            "none"
+        ]
+    },
+    {
+        "id": "862fc996.53e758",
+        "type": "ui_chart",
+        "z": "1698e713.723af9",
+        "name": "",
+        "group": "2156d79d.ea5c48",
+        "order": 4,
+        "width": 8,
+        "height": 5,
+        "label": "Manufactured Incremental History",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "no data received",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "10",
+        "removeOlderPoints": "180",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 1440,
+        "y": 1120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a96e5556.683e78",
+        "type": "mqtt in",
+        "z": "1698e713.723af9",
+        "name": "Get /impulse",
+        "topic": "/impulse",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "e92c7723.51846",
+        "x": 150,
+        "y": 1180,
+        "wires": [
+            [
+                "2f0f4c62.e4efc4"
+            ]
+        ]
+    },
+    {
+        "id": "2f0f4c62.e4efc4",
+        "type": "json",
+        "z": "1698e713.723af9",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 370,
+        "y": 1180,
+        "wires": [
+            [
+                "580a99bd.7f7cc8"
+            ]
+        ]
+    },
+    {
+        "id": "580a99bd.7f7cc8",
+        "type": "function",
+        "z": "1698e713.723af9",
+        "name": "filter machineName",
+        "func": "//return [ msg, null];\n\nvar payload = msg.payload;\nif (payload.machineName == \"IOT8801BM\") {\n    return [ msg, null ];} else {\n\n    return [ null, msg ];\n}\n//",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 550,
+        "y": 1180,
+        "wires": [
+            [
+                "932553c8.ae55b"
+            ]
+        ]
+    },
+    {
+        "id": "932553c8.ae55b",
+        "type": "debug",
+        "z": "1698e713.723af9",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1030,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "46fe2a7c.7b4de4",
+        "type": "debug",
+        "z": "1698e713.723af9",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1290,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "f4a136c3.c61d68",
+        "type": "comment",
+        "z": "1698e713.723af9",
+        "name": "Attention: ",
+        "info": "- at \"function\" in \"payload\":\n  you (still) need to insert manually the UUID of machine from EddgeAPI via swagger\n- at \"HTTP\" in \"URL\":\n  you (still) need to insert manually the UUID of machine from EddgeAPI via swagger\n",
+        "x": 440,
+        "y": 1440,
+        "wires": []
+    },
+    {
+        "id": "f78aeab8.a9c538",
+        "type": "comment",
+        "z": "1698e713.723af9",
+        "name": "Attention: ",
+        "info": "- at \"function\" in \"payload\":\n  you (still) need to insert manually the UUID of machine from EdgeAPI via swagger\n- at \"HTTP\" in \"URL\":\n  you (still) need to insert manually the UUID of machine from EdgeAPI via swagger\n",
+        "x": 420,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "4f5e723cad2eeff7",
+        "type": "ui_ui_control",
+        "z": "1698e713.723af9",
+        "name": "",
+        "events": "change",
+        "x": 300,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1cd09294b842d843",
+        "type": "ui_button",
+        "z": "1698e713.723af9",
+        "name": "",
+        "group": "5a2275c946e8a97e",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "back to bearer",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 100,
+        "y": 40,
+        "wires": [
+            [
+                "4f5e723cad2eeff7"
+            ]
+        ]
+    }
+]
